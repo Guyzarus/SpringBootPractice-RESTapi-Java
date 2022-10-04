@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class DeckResponseDto {
 	
 	private String deckName;
-	private List<Card> cardList;
+	private List<CardResponseDto> cardList;
 	private String hero;
 	private String author; 
 

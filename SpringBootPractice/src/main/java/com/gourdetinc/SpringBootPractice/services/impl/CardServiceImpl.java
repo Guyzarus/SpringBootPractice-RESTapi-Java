@@ -32,7 +32,7 @@ public class CardServiceImpl implements CardService {
 		Card cardToBePosted = cardMapper.responseDtoToCard(cardToPost);
 		cardToBePosted.setCardId(cardToPost.getCardId());
 		cardToBePosted.setName(cardToPost.getName());
-		cardToBePosted.setPitchCost(cardToPost.getPitchValue());
+		cardToBePosted.setPitchCost(cardToPost.getPitchCost());
 		cardToBePosted.setResourceCost(cardToPost.getResourceCost());
 		cardToBePosted.setAttackValue(cardToPost.getAttackValue());
 		cardToBePosted.setBlockValue(cardToPost.getBlockValue());

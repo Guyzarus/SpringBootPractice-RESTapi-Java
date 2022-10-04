@@ -3,6 +3,7 @@ package com.gourdetinc.SpringBootPractice.services.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.gourdetinc.SpringBootPractice.dtos.CardRequestDto;
@@ -48,8 +49,9 @@ public class DeckServiceImpl implements DeckService {
 
 		List<Card> cardsToSet = new ArrayList<>();
 		for (CardRequestDto card : deckToPost.getCardList()) {
-			cardsToSet.add(cardRepository.getById(card.getId()));
-
+			cardsToSet.add(cardRepository.findCardByCard_CardId(card.getId()).get());
+			System.out.println("##" + cardRepository.findCardByCard_CardId(card.getId()));
+			System.out.println("###" + card);
 		}
 		deckToBePosted.setCardList(cardsToSet);
 		deckToBePosted.setDeckName(deckToPost.getDeckName());

@@ -10,7 +10,7 @@ public class CardResponseDto {
 	private String cardId;
 	private String name;
 	private String cardType;
-	private Long pitchValue;
+	private Long pitchCost;
 	private Long resourceCost;
 	private Long attackValue;
 	private Long blockValue;
