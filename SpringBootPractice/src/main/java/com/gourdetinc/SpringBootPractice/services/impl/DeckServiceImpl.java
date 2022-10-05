@@ -43,23 +43,22 @@ public class DeckServiceImpl implements DeckService {
 	@SuppressWarnings("deprecation")
 	@Override
 	public DeckResponseDto createDeck(DeckRequestDto deckToPost) {
-//		Deck deckToBePosted = new Deck();
-//
-//		deckToBePosted.setAuthor(deckToPost.getAuthor());
-//
-//		List<Card> cardsToSet = new ArrayList<>();
-//		for (CardRequestDto card : deckToPost.getCardList()) {
-//			cardsToSet.add(cardRepository.findCardByCard_CardId(card).get());
-//			System.out.println("##" + cardRepository.findCardByCard_CardId(card.getId()));
-//			System.out.println("###" + card);
-//		}
-//		deckToBePosted.setCardList(cardsToSet);
-//		deckToBePosted.setDeckName(deckToPost.getDeckName());
-//		deckToBePosted.setHero(deckToPost.getHero());
-//
-//		System.out.println(deckToBePosted);
-//		return deckMapper.deckToResponseDto(deckRepository.saveAndFlush(deckToBePosted));
-	return null;
+		Deck deckToBePosted = new Deck();
+
+		deckToBePosted.setAuthor(deckToPost.getAuthor());
+
+		List<Card> cardsToSet = new ArrayList<>();
+		for (CardRequestDto card : deckToPost.getCardList()) {
+			cardsToSet.add(cardRepository.findById(card.getIdentifiers()).get());
+			System.out.println("##" + cardRepository.findById(card.getIdentifiers()).get());
+			System.out.println("###" + card);
+		}
+		deckToBePosted.setCardList(cardsToSet);
+		deckToBePosted.setDeckName(deckToPost.getDeckName());
+		deckToBePosted.setHero(deckToPost.getHero());
+
+		System.out.println(deckToBePosted);
+		return deckMapper.deckToResponseDto(deckRepository.saveAndFlush(deckToBePosted));
 	}
 
 }
