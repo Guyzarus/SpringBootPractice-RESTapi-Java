@@ -10,7 +10,7 @@ import com.gourdetinc.SpringBootPractice.entities.Card;
 @Repository
 public interface CardRepository extends JpaRepository<Card, String> {
 	
-	Optional<Card> findById(String id);
-	Optional<Card> findCardByCard_CardId(String cardId); 
+//	Optional<Card> findById(String id);
+//	Optional<Card> findCardByCard_CardId(String cardId); 
 
 }

@@ -13,4 +13,6 @@ public interface CardService {
 
 	CardResponseDto postCard(CardResponseDto cardToPost);
 
+	List<CardResponseDto> postAllCards(List<CardResponseDto> cardsToPost);
+
 }

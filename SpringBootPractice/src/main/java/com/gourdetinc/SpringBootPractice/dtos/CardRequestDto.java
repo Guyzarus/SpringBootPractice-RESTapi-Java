@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class CardRequestDto {
 
-	private String id;
+	private String identifiers;
 	
 }

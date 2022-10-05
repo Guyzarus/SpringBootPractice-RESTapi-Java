@@ -32,4 +32,9 @@ public class CardController {
 	public CardResponseDto postCard(@RequestBody CardResponseDto cardToPost) {
 		return cardService.postCard(cardToPost);
 	} 
+	
+	@PostMapping("/addAll")
+	public List<CardResponseDto> postAllCard(@RequestBody List<CardResponseDto> cardsToPost) {
+		return cardService.postAllCards(cardsToPost);
+	} 
 }

@@ -1,5 +1,7 @@
 package com.gourdetinc.SpringBootPractice.services.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -30,18 +32,29 @@ public class CardServiceImpl implements CardService {
 	@Override
 	public CardResponseDto postCard(CardResponseDto cardToPost) {
 		Card cardToBePosted = cardMapper.responseDtoToCard(cardToPost);
-		cardToBePosted.setCardId(cardToPost.getCardId());
-		cardToBePosted.setName(cardToPost.getName());
-		cardToBePosted.setPitchCost(cardToPost.getPitchCost());
-		cardToBePosted.setResourceCost(cardToPost.getResourceCost());
-		cardToBePosted.setAttackValue(cardToPost.getAttackValue());
-		cardToBePosted.setBlockValue(cardToPost.getBlockValue());
-		cardToBePosted.setCardType(cardToPost.getCardType());
-		cardToBePosted.setClassType(cardToPost.getClassType());
-		
 		return cardMapper.cardToResponseDto(cardRepository.saveAndFlush(cardToBePosted));
 		
 		
+	}
+
+	@Override
+	public List<CardResponseDto> postAllCards(List<CardResponseDto> cardsToPost) {
+		List<Card> cardsToBeSet = new ArrayList<Card>();
+		for(CardResponseDto card : cardsToPost) {
+			if(card.getIdentifiers().contains(", ")) {
+				List<String> ids = Arrays.asList(card.getIdentifiers().split(", "));
+				List<String> setIds = Arrays.asList(card.getSetIdentifiers().split(", "));
+				if(ids.size() > 1 || setIds.size() > 1) {
+					for(int i =0; i < ids.size(); i++) {
+						Card newCard = cardMapper.responseDtoToCard(card);
+						newCard.setIdentifiers(ids.get(i));
+						newCard.setSetIdentifiers(setIds.get(i));
+						cardsToBeSet.add(newCard);
+					}
+				}
+			}
+		}
+		return cardMapper.cardsToReponseDtos(cardRepository.saveAllAndFlush(cardsToBeSet));
 	}
 
 }
