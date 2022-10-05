@@ -42,8 +42,8 @@ public class CardServiceImpl implements CardService {
 		List<Card> cardsToBeSet = new ArrayList<Card>();
 		for(CardResponseDto card : cardsToPost) {
 			if(card.getIdentifiers().contains(", ")) {
-				List<String> ids = Arrays.asList(card.getIdentifiers().split(", "));
-				List<String> setIds = Arrays.asList(card.getSetIdentifiers().split(", "));
+				List<String> ids = Arrays.asList(card.getIdentifiers().split("\\s*,\\s*"));
+				List<String> setIds = Arrays.asList(card.getSetIdentifiers().split("\\s*,\\s*"));
 				if(ids.size() > 1 || setIds.size() > 1) {
 					for(int i =0; i < ids.size(); i++) {
 						Card newCard = cardMapper.responseDtoToCard(card);
